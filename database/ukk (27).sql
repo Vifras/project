@@ -1,0 +1,762 @@
+-- phpMyAdmin SQL Dump
+-- version 3.1.3.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Feb 17, 2017 at 10:14 PM
+-- Server version: 5.1.33
+-- PHP Version: 5.2.9
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `ukk`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agama`
+--
+
+CREATE TABLE IF NOT EXISTS `agama` (
+  `id_agama` int(11) NOT NULL AUTO_INCREMENT,
+  `agama` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_agama`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `agama`
+--
+
+INSERT INTO `agama` (`id_agama`, `agama`) VALUES
+(1, 'Hindu'),
+(2, 'Islam'),
+(4, 'Kristen'),
+(5, 'Budha'),
+(6, 'Katolik'),
+(7, 'Kong Hu Cou');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `album`
+--
+
+CREATE TABLE IF NOT EXISTS `album` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `album`
+--
+
+INSERT INTO `album` (`id`, `nama`) VALUES
+(1, 'Kampung Lebak'),
+(2, 'Hewan'),
+(3, 'Foto Petugas'),
+(4, 'Flowers'),
+(5, 'Places');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `album_detil`
+--
+
+CREATE TABLE IF NOT EXISTS `album_detil` (
+  `id_alb` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
+  `foto` varchar(250) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
+  `tanggal` date NOT NULL,
+  PRIMARY KEY (`id_alb`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `album_detil`
+--
+
+INSERT INTO `album_detil` (`id_alb`, `id`, `foto`, `keterangan`, `tanggal`) VALUES
+(1, 1, 'album/img3.jpg', 'Habis Kerja Bakti', '2017-02-13'),
+(2, 1, '../includes/album/img2.jpg', 'Renovasi bangunan warga', '2017-02-13'),
+(3, 1, '../includes/album/img1.JPG', 'Kerja bakti', '2017-02-13'),
+(4, 1, '../includes/album/img4.jpg', 'Papan Pengumuman Kampung', '2017-02-13'),
+(5, 1, '../includes/album/img6.jpg', 'Papan Pengumuman Kampung', '2017-02-13'),
+(6, 1, '../includes/album/img5.JPG', 'Balai RT yang baru', '2017-02-13'),
+(8, 2, '../includes/albumKoala.jpg', 'Koala.', '2017-02-16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bendahara`
+--
+
+CREATE TABLE IF NOT EXISTS `bendahara` (
+  `nik_benda` varchar(20) NOT NULL,
+  `foto` varchar(100) NOT NULL,
+  `nik_rt` varchar(20) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `jenis` varchar(20) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  PRIMARY KEY (`nik_benda`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bendahara`
+--
+
+INSERT INTO `bendahara` (`nik_benda`, `foto`, `nik_rt`, `nama`, `jenis`, `alamat`) VALUES
+('10987654321', 'foto/Koala.jpg', '0987654321', 'Araku', 'Petugas Entry', 'Lebak Jaya Utara IV A Rawasan 43 '),
+('11223344556677', 'foto/Penguins.jpg', '0987654321', 'Mawa', 'Petugas Tagih', 'Lebak Jaya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eksekutif`
+--
+
+CREATE TABLE IF NOT EXISTS `eksekutif` (
+  `id_eksekutif` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(50) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `id_jabatan` int(11) NOT NULL,
+  PRIMARY KEY (`id_eksekutif`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `eksekutif`
+--
+
+INSERT INTO `eksekutif` (`id_eksekutif`, `nama`, `alamat`, `id_jabatan`) VALUES
+(2, 'Alif Rachmad Kurniawan', 'LJUR 43', 1),
+(3, 'Mawa', 'Lebak Jaya Utara IV A Rawasan 43', 2),
+(4, 'Arach', '', 3),
+(5, 'Yui', '', 4),
+(6, 'Araku', 'LJUR 42', 5),
+(7, 'Afif Faras', 'Lebak Jaya Utara IV A Rawasan No. 43', 6),
+(8, 'Nabila', 'LJUR 45', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hubungan`
+--
+
+CREATE TABLE IF NOT EXISTS `hubungan` (
+  `id_hubungan` varchar(10) NOT NULL,
+  `hubungan` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_hubungan`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hubungan`
+--
+
+INSERT INTO `hubungan` (`id_hubungan`, `hubungan`) VALUES
+('1', 'Kepala Keluarga'),
+('2', 'Suami'),
+('3', 'Istri'),
+('4', 'Anak'),
+('5', 'Menantu'),
+('6', 'Cucu'),
+('7', 'Orang Tua'),
+('8', 'Mertua'),
+('9', 'Famili Lain'),
+('10', 'Pembantu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `iuran`
+--
+
+CREATE TABLE IF NOT EXISTS `iuran` (
+  `no_kk` varchar(20) NOT NULL,
+  `id_iuran` int(11) NOT NULL AUTO_INCREMENT,
+  `bulan` char(2) NOT NULL,
+  `tahun` year(4) NOT NULL,
+  `tanggal_bayar` date NOT NULL,
+  `id_jenis_iuran` int(11) NOT NULL,
+  `jumlah` double NOT NULL,
+  PRIMARY KEY (`id_iuran`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `iuran`
+--
+
+INSERT INTO `iuran` (`no_kk`, `id_iuran`, `bulan`, `tahun`, `tanggal_bayar`, `id_jenis_iuran`, `jumlah`) VALUES
+('091209312', 1, '01', 2017, '2017-01-23', 1, 10000),
+('091209312', 2, '02', 2017, '2017-01-23', 1, 10000),
+('091209312', 3, '03', 2017, '2017-01-25', 1, 10000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jabatan`
+--
+
+CREATE TABLE IF NOT EXISTS `jabatan` (
+  `id_jabatan` int(11) NOT NULL AUTO_INCREMENT,
+  `jabatan` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_jabatan`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `jabatan`
+--
+
+INSERT INTO `jabatan` (`id_jabatan`, `jabatan`) VALUES
+(1, 'Ketua RW'),
+(2, 'Ketua RT'),
+(3, 'Wakil Ketua RT'),
+(4, 'Sekretaris'),
+(5, 'Bendahara'),
+(6, 'Bidang Keamanan'),
+(7, 'Bidang Kebersihan'),
+(8, 'Bidang Pemuda'),
+(9, 'Bidang Sarana & Prasarana'),
+(10, 'Bidang Humas'),
+(11, 'Bidang Agama & Sosial'),
+(12, 'Bidang Khusus Rukun Kematian'),
+(13, 'Kelompok Kerja (POKJA)');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenis_iuran`
+--
+
+CREATE TABLE IF NOT EXISTS `jenis_iuran` (
+  `id_jenis_iuran` int(11) NOT NULL AUTO_INCREMENT,
+  `jenis_iuran` varchar(20) NOT NULL,
+  `jumlah` float NOT NULL,
+  PRIMARY KEY (`id_jenis_iuran`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `jenis_iuran`
+--
+
+INSERT INTO `jenis_iuran` (`id_jenis_iuran`, `jenis_iuran`, `jumlah`) VALUES
+(1, 'Wajib', 5000),
+(2, 'Sukarela / Sumbangan', 0),
+(3, 'Sosial', 1000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenis_keluarga`
+--
+
+CREATE TABLE IF NOT EXISTS `jenis_keluarga` (
+  `id_jenis_keluarga` int(11) NOT NULL AUTO_INCREMENT,
+  `jenis_keluarga` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_jenis_keluarga`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `jenis_keluarga`
+--
+
+INSERT INTO `jenis_keluarga` (`id_jenis_keluarga`, `jenis_keluarga`) VALUES
+(1, 'Tetap'),
+(2, 'KK Tidak Berdomisili'),
+(3, 'Kontrak'),
+(4, 'Kost');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kegiatan`
+--
+
+CREATE TABLE IF NOT EXISTS `kegiatan` (
+  `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT,
+  `perihal` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `tanggal_kegiatan` date NOT NULL,
+  `isi` text NOT NULL,
+  PRIMARY KEY (`id_kegiatan`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `kegiatan`
+--
+
+INSERT INTO `kegiatan` (`id_kegiatan`, `perihal`, `nama`, `tanggal_kegiatan`, `isi`) VALUES
+(11, 'Presentasi UKK', 'Admin', '2017-01-25', '<p>Siap - siap semua tinggal 3 minggu menuju UKK :D</p>'),
+(14, 'Mengumpulkan Tugas Akhir', 'Admin', '2017-02-18', '<p>Semua tugas harap diselesaikan dengan baik dan benar</p>'),
+(15, 'Mencoba Bangkit', 'Admin', '2017-02-19', '<p>Wait For US !!! The Last Moment of Presentation</p>'),
+(8, 'Makan Besar', 'Bpk. Yusron', '2017-01-15', '<p>Rumah Bapak Yusron, makan soto daging Wachid setelah sholat isya.</p>'),
+(9, 'Ultah Adek Mirza ke 7 tahun', 'Pak Pungky sekeluarga', '2017-01-30', '<p>Dateng ya !! Bada Ashar, tidak usah membawa apa-apa. ditunggu kehadirannya</p>'),
+(10, 'Jangan Lupa Backup !', 'Alif', '2017-01-14', '<p>Supaya aman Xv</p>'),
+(12, 'Posyandu', 'Ketua RT', '2017-02-09', '<p>Akan diadakan posyandu rutin minggu ini tanggal 1 Februari 2017 di aula kelurahan Dukuh Setro.</p>'),
+(13, 'test tiny', 'Agus', '2017-02-12', '<p><strong>test</strong></p>\r\n<p>:D</p>\r\n<ul>\r\n<li><em>askdjas</em></li>\r\n</ul>\r\n<ol>\r\n<li><em>qwq</em></li>\r\n</ol>');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keluarga`
+--
+
+CREATE TABLE IF NOT EXISTS `keluarga` (
+  `no_kk` varchar(20) NOT NULL,
+  `id_jenis_keluarga` int(11) NOT NULL,
+  `kepkel` varchar(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `rt` varchar(10) NOT NULL,
+  `rw` varchar(10) NOT NULL,
+  `kelurahan` varchar(20) NOT NULL,
+  `kecamatan` varchar(20) NOT NULL,
+  `kota` varchar(20) NOT NULL,
+  `kode_pos` varchar(20) NOT NULL,
+  `propinsi` varchar(20) NOT NULL,
+  PRIMARY KEY (`no_kk`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `keluarga`
+--
+
+INSERT INTO `keluarga` (`no_kk`, `id_jenis_keluarga`, `kepkel`, `alamat`, `rt`, `rw`, `kelurahan`, `kecamatan`, `kota`, `kode_pos`, `propinsi`) VALUES
+('12345678910', 3, 'Alif Rachmad Kurniawan', 'Lebak Jaya Utara IVA Rawasan No.44 ', '01', '01', 'Dukuh Setro', 'Tambaksari', 'Surabaya', '60138', 'Jawa Timur'),
+('10987654321', 4, 'Rachmad Kurniawan', 'Lebak Jaya Utara IV A Rawasan 43', '04', '05', 'Dukuh Setro', 'Tambaksari', 'Surabaya', '60138', 'Jawa Timur'),
+('091209312', 1, 'Achmad Chasan', 'JL Rembang 74 B ', '01', '04', 'Dupak', 'Krembangan', 'Surabaya', '60138', 'Jawa Timur'),
+('2907432908', 1, 'Sutrisno', 'Putat Jaya C Timur 45 ', '03', '05', 'Sawahan', 'Sawahan', 'Surabaya', '60138', 'Jawa Timur'),
+('11223344556677', 2, 'Supri', 'Wonosari 4 ', '07', '10', 'Sawahan', 'Sawahan', 'Surabaya', '60138', 'Jawa Timur'),
+('0987654321', 4, 'Nabila Ramadhani', 'LJUR 45', '04', '08', 'Tembok Dukuh', 'Sawahan', 'Surabaya', '60138', 'Jawa Timur'),
+('1234567891011', 3, 'Afif Faras', 'LJUR 41', '05', '09', 'Sawahan', 'Sawahan', 'Surabaya', '60138', 'Jawa Timur');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pekerjaan`
+--
+
+CREATE TABLE IF NOT EXISTS `pekerjaan` (
+  `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT,
+  `pekerjaan` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_pekerjaan`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92 ;
+
+--
+-- Dumping data for table `pekerjaan`
+--
+
+INSERT INTO `pekerjaan` (`id_pekerjaan`, `pekerjaan`) VALUES
+(2, 'Belum/Tidak Bekerja'),
+(4, 'Mengurus Rumah Tangga'),
+(5, 'Pelajar/Mahasiswa'),
+(6, 'Pensiunan'),
+(7, 'Pegawai Negeri Sipil ( PNS)'),
+(8, 'Tentara Nasional Indonesia (TNI)'),
+(9, 'Kepolisian RI (Polri)'),
+(10, 'Perdagangan'),
+(11, 'Petani/Pekebun'),
+(12, 'Ternak'),
+(13, 'Nelayan/Perikanan'),
+(14, 'Industri'),
+(15, 'Konstruksi'),
+(16, 'Transportasi'),
+(17, 'Karyawan Swasta'),
+(18, 'Karyawan BUMN'),
+(19, 'Karyawan BUMD'),
+(20, 'Karyawan Honorer'),
+(21, 'Buruh Harian Lepas'),
+(22, 'Buruh Tani/Perkebunan'),
+(23, 'Buruh Nelayan/Perikanan'),
+(24, 'Buruh Peternakan'),
+(25, 'Pembantu Rumah Tangga'),
+(26, 'Tukang Cukur'),
+(27, 'Tukang Listrik'),
+(28, 'Tukang Batu'),
+(29, 'Tukang Kayu'),
+(30, 'Tukang Sol Sepatu'),
+(31, 'Tukang Las/Pandai besi'),
+(32, 'Tukang Jahit'),
+(33, 'Tukang Gigi'),
+(34, 'Penata Rias'),
+(35, 'Penata Busana'),
+(36, 'Penata Rambut'),
+(37, 'Mekanik'),
+(38, 'Seniman'),
+(39, 'Tabib'),
+(40, 'Paraji'),
+(41, 'Perancang Busana'),
+(42, 'Penerjemah'),
+(43, 'Imam Masjid'),
+(44, 'Pendeta'),
+(45, 'Pastor'),
+(46, 'Wartawan'),
+(47, 'Ustadz/Mubaligh'),
+(48, 'Juru Masak'),
+(49, 'Promotor Acara'),
+(50, 'Anggota DPR'),
+(51, 'Anggota DPD'),
+(52, 'Anggota BPK'),
+(53, 'Presiden'),
+(54, 'Wakil Presiden'),
+(55, 'Anggota Mahkamah Konstitusi'),
+(56, 'Anggota Kabinet/Kementrian'),
+(57, 'Duta Besar'),
+(58, 'Gubernur'),
+(59, 'Wakil Gubernur'),
+(60, 'Bupati'),
+(61, 'Wakil Bupati'),
+(62, 'Walikota'),
+(63, 'Wakil Walikota'),
+(64, 'Anggota DPRD Prop'),
+(65, 'Anggota DPRD Kab/kota'),
+(66, 'Dosen'),
+(67, 'Guru'),
+(68, 'Pilot'),
+(69, 'Pengacara'),
+(70, 'Notaris'),
+(71, 'Arsitek'),
+(72, 'Akuntan'),
+(73, ' Konsultan'),
+(74, 'Dokter'),
+(75, 'Bidan'),
+(76, 'Pegawai'),
+(77, 'Apoteker'),
+(78, 'Psikiater/Psikolog'),
+(79, 'Penyiar Televisi'),
+(80, 'Penyiar Radio'),
+(81, 'Pelaut'),
+(82, 'Penulis'),
+(83, 'Sopir'),
+(84, 'Pialang'),
+(85, 'Paranormal'),
+(86, 'Pedagang'),
+(87, 'Perangkat Desa'),
+(88, 'Kepala Desa'),
+(89, 'Biarawati'),
+(90, 'Wiraswasta'),
+(91, 'Lainnya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pendidikan`
+--
+
+CREATE TABLE IF NOT EXISTS `pendidikan` (
+  `id_pendidikan` varchar(10) NOT NULL,
+  `pendidikan` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_pendidikan`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pendidikan`
+--
+
+INSERT INTO `pendidikan` (`id_pendidikan`, `pendidikan`) VALUES
+('1', 'Tidak/Belum Sekolah'),
+('2', 'Tidak Tamat SD/Sederajat'),
+('3', 'Tamat SD/Sederajat'),
+('4', 'SLTP/Sederajat'),
+('5', 'SLTA/Sederajat'),
+('6', 'Diploma I/II'),
+('7', 'Akademi/Diploma III/S. Muda'),
+('8', 'Diploma IV/Strata I'),
+('9', 'Strata II'),
+('10', 'Strata III');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penduduk`
+--
+
+CREATE TABLE IF NOT EXISTS `penduduk` (
+  `no_kk` varchar(20) NOT NULL,
+  `nik` varchar(20) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `gender` varchar(100) NOT NULL,
+  `tempat_lahir` varchar(20) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `id_agama` int(11) NOT NULL,
+  `id_pendidikan` varchar(10) NOT NULL,
+  `id_pekerjaan` int(11) NOT NULL,
+  `id_status` varchar(10) NOT NULL,
+  `id_hubungan` varchar(10) NOT NULL,
+  `kewar` varchar(50) NOT NULL,
+  `no_paspor` varchar(20) NOT NULL,
+  `no_kitaskitap` varchar(20) NOT NULL,
+  `ayah` varchar(30) NOT NULL,
+  `ibu` varchar(30) NOT NULL,
+  PRIMARY KEY (`nik`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penduduk`
+--
+
+INSERT INTO `penduduk` (`no_kk`, `nik`, `nama`, `gender`, `tempat_lahir`, `tanggal_lahir`, `id_agama`, `id_pendidikan`, `id_pekerjaan`, `id_status`, `id_hubungan`, `kewar`, `no_paspor`, `no_kitaskitap`, `ayah`, `ibu`) VALUES
+('12345678910', '1234567890', 'Mawa Yui', 'P', 'Japan', '2001-02-05', 2, '10', 2, '2', '3', 'WNA', '', '', 'Hanato Ryu', 'Hanato Ise'),
+('10987654321', '1', 'Alif', 'L', 'Surabaya', '1999-01-07', 2, '5', 2, '1', '4', 'WNI', '', '', 'Rachmad Kurniawan', 'Fitriyah Azizah'),
+('12345678910', '1234567891012', 'Aoai Mawa', 'P', 'Japan', '2017-05-06', 2, '1', 2, '1', '4', 'WNA', '', '', ' Alif Rachmad Kurniawan', 'Yui Hanato'),
+('091209312', '10293810', 'Wiwik Sagita', 'P', 'Samarinda', '1981-05-04', 2, '5', 2, '2', '3', 'WNI', '', '', 'Alm. Atim', 'Yuyun Tumena'),
+('091209312', '127391', 'Ary Ichsan P', 'L', 'Surabaya', '1999-11-10', 7, '5', 2, '1', '4', 'WNI', '', '', 'Achmad Achsan', 'Wiwik Sagita'),
+('091209312', '0000001', 'Achmad Chasan', 'L', 'Surabaya', '1985-02-21', 2, '5', 16, '2', '2', 'WNI', '', '', 'saya', 'saya'),
+('11223344556677', '123', 'Agus', 'L', 'asdj', '2017-02-02', 2, '1', 2, '1', '1', 'WNA', '', '', 'aa', 'aa'),
+('0987654321', '2', 'Nabila Ramadhani', 'P', 'Surabaya', '2006-10-06', 2, '1', 2, '1', '4', 'WNI', '', '', 'Rachmad Kurniawan', 'Fitriyah Azizah'),
+('0987654321', '3', 'Afif Faras', 'L', 'Surabaya', '2017-06-15', 2, '4', 2, '1', '4', 'WNI', '', '', 'Rachmad Kurniawan', 'Fitriyah Azizah');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengumuman`
+--
+
+CREATE TABLE IF NOT EXISTS `pengumuman` (
+  `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(100) NOT NULL,
+  `pengumuman` text NOT NULL,
+  `pengirim` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id_pengumuman`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+--
+-- Dumping data for table `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id_pengumuman`, `judul`, `pengumuman`, `pengirim`, `date`) VALUES
+(3, 'Tinymce', '<p style="border: 0px; font-family: ''Lucida Grande'', Arial, ''Lucida Sans Unicode'', sans-serif; font-size: 13px; margin: 0px 0px 1.5em; outline: 0px; padding: 0px; vertical-align: baseline; color: #666666; background-color: #efefef; text-align: justify;">Web designer mana yang tak kenal dengan <strong>TinyMCE</strong> ??? Menurut saya pasti hampir semua web designer menggunakan TinyMCE untuk aplikasi webnya, baik itu aplikasi berita, komentar dll. Nah bagi yang belum tau tentang TinyMCE, mari kita lihat pengertiannya dari situs resminya. Neh sekilas tentang TinyMCE dari situs resminya :</p>\r\n<p style="border: 0px; font-family: ''Lucida Grande'', Arial, ''Lucida Sans Unicode'', sans-serif; font-size: 13px; margin: 0px 0px 1.5em; outline: 0px; padding: 0px; vertical-align: baseline; color: #666666; background-color: #efefef; text-align: justify;">TinyMCE is a platform independent web based Javascript HTML WYSIWYG editor control released as Open Source under LGPL by Moxiecode Systems AB. TinyMCE has the ability to convert HTML TEXTAREA fields or other HTML elements to editor instances. TinyMCE is very easy to integrate into other Content Management Systems. (&nbsp;<a style="border: 0px; font-family: inherit; font-style: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; color: #000000; text-decoration-line: none;" href="http://tinymce.moxiecode.com/">http://tinymce.moxiecode.com/</a>&nbsp;)</p>', 'Admin', '2016-12-31'),
+(2, 'Mancing Mania !!! Mantap...', '<p>Ayo ikuti !!! langsung daftar ke <span style="text-decoration: underline;"><strong><em>Bpk. Yudhi</em></strong></span>... lho</p>', 'Admin', '2016-12-27'),
+(4, 'Welcome to XAMPP for Windows Version 1.7.1 !', '<p><strong style="font-family: verdana, helvetica; font-size: 12px;">Congratulations:<br />You have successfully installed XAMPP on this system!</strong></p>\r\n<p style="font-family: verdana, helvetica; font-size: 12px;">Now you can start using Apache and Co. You should first try &raquo;Status&laquo; on the left navigation to make sure everything works fine.</p>\r\n<p style="font-family: verdana, helvetica; font-size: 12px;">For OpenSSL support please use the test certificate with&nbsp;<a style="color: #bb3902;" href="https://127.0.0.1/" target="_top">https://127.0.0.1</a>&nbsp;or&nbsp;<a style="color: #bb3902;" href="https://localhost/" target="_top">https://localhost</a></p>\r\n<p style="font-family: verdana, helvetica; font-size: 12px;">For this release a special thanks to&nbsp;<a style="color: #bb3902;" href="http://www.php.net/credits.php" target="_new">Uwe Steinmann</a>&nbsp;for his excellent development and compilation of all current "Special" modules!</p>\r\n<p style="font-family: verdana, helvetica; font-size: 12px;">Good luck, Kay Vogelgesang + Kai ''Oswald'' Seidler</p>', 'Admin', '2016-12-26'),
+(15, 'Informasi Pelaksanaan Pemilihan Lurah ', '<p style="text-align: justify;">Dalam rangka pelaksanaan pemilihan lurah Dukuh Setro, sebagai tahap persiapan kami sampaikan hal-hal sebagai berikut:</p>\r\n<ol>\r\n<li>pendaftaran lurah dilaksanakan tanggal <strong>27 Februari s.d. 2 Maret 2017</strong>,</li>\r\n<li>pendaftaran susulan dilaksanakan tanggal :<strong>4 s.d. 5 Maret 2017</strong></li>\r\n<li>Penyerahan berkas dilaksanakan : <strong>Jumat, 15 Maret 2017 Pkl. 08.00 s.d. 11.00 di kantor kelurahan Dukuh Setro</strong></li>\r\n</ol>\r\n<div style="text-align: justify;">Atas perhatian dan kerjasama Bapak/Ibu kami ucapkan terima kasih.</div>', 'Ketua RT', '2017-01-28'),
+(16, 'Mencoba Bangun', '<p>kosong</p>', 'admin', '2017-02-17'),
+(10, 'Iuran Wajib Kampung', '<p>Assalamualikum wr. wb.</p>\r\n<p>Setiap warga wajib menyetorkan iuran paling lambat tanggal 5 setiap bulannya, pengurus bendahara akan memberikan surat teguran jika terdapat tunggakan.</p>\r\n<p>Terima kasih atas perhatiannya,</p>\r\n<p>Wassalamualikum wr. wb.</p>\r\n<p>Bpk. Araku</p>', 'Bendahara', '2017-01-10'),
+(13, 'Tentang Kami', '<p><span style="color: black;">Clothing Store adalah butik online yang menyediakan berbagai koleksi baju terkini dengan harga yang sangat terjangkau. Kami menyediakan berbagai model baju untuk pria dan wanita. Dengan harga yang sangat murah, namun tetap tidak menomorduakan kualitas. Selain itu kini kami melangkapi koleksi kami dengan baju-baju impor namun tetap dengan harga terjangkau. Segera nikmati kemudahan berbelanja tanpa batas di mana pun Anda berada.</span></p>', 'Admin', '2017-01-11'),
+(14, 'Cara Pemesanan', '<p><span style="font-family: verdana; font-size: small;"><span style="color: black;"><span style="font-family: verdana; font-size: small;">\r\n<ul>\r\n<li>\r\n<p align="justify">Langkah pertama yang harus Anda lakukan adalah Login dengan menggunakan nama pengguna dan sandi yang telah Anda daftarkan sebelumnya.</p>\r\n</li>\r\n<li>Klik pada tombol&nbsp;<span style="font-weight: bold;">Beli</span> pada produk yang ingin Anda pesan.</li>\r\n<li>\r\n<p align="justify">Produk yang Anda pesan akan masuk ke dalam <span style="font-weight: bold;">Keranjang Belanja</span>. Anda dapat melakukan perubahan jumlah produk yang diinginkan dengan mengganti angka di kolom <span style="font-weight: bold;">Jumlah</span>, kemudian klik tombol <span style="font-weight: bold;">Update</span>. Sedangkan untuk menghapus sebuah produk dari Keranjang Belanja, klik tombol Kali yang berada di kolom paling kanan.</p>\r\n</li>\r\n<li>\r\n<p align="justify">Jika sudah selesai, klik tombol <span style="font-weight: bold;">Selesai</span>, maka akan tampil form untuk pengisian data kustomer/pembeli.</p>\r\n</li>\r\n<li>\r\n<p align="justify">Setelah data pembeli selesai diisikan, klik tombol <span style="font-weight: bold;">Proses</span>, maka akan tampil data pembeli beserta produk yang dipesan (jika diperlukan catat nomor ordernya). Dan juga ada total pembayaran serta nomor rekening pembayaran.</p>\r\n</li>\r\n<li>\r\n<p align="justify">Lakukan pembayaran melalui transfer ke rekening bank kami (tambahkan angka unik pada saat transfer, misal: Rp 2.000.000 menjadi Rp 2.000.088 untuk memudahkan pengecekan dalam rekening kami) :</p>\r\n<ul>\r\n<li><span style="font-weight: bold;">BCA</span> 0331490252 an: Suwondo</li>\r\n<li><span style="font-weight: bold;">Mandiri</span> 1440012113475 an: Suwondo</li>\r\n<li><span style="font-weight: bold;">BNI</span> 0050365393 an: Suwondo</li>\r\n<li><span style="font-weight: bold;">BRI</span> 320701018697533 an: Suwondo</li>\r\n</ul>\r\n</li>\r\n<li>\r\n<p align="justify">Apabila pembayaran telah terlaksana, kami akan memproses pengiriman produk yang anda pesan</p>\r\n</li>\r\n</ul>\r\n</span></span></span></p>', 'Admin', '2017-01-11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profil`
+--
+
+CREATE TABLE IF NOT EXISTS `profil` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nik_rt` varchar(20) NOT NULL,
+  `nik_rw` varchar(20) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `kelurahan` varchar(20) NOT NULL,
+  `kecamatan` varchar(20) NOT NULL,
+  `kota` varchar(20) NOT NULL,
+  `kodepos` varchar(20) NOT NULL,
+  `provinsi` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `profil`
+--
+
+INSERT INTO `profil` (`id`, `nik_rt`, `nik_rw`, `alamat`, `kelurahan`, `kecamatan`, `kota`, `kodepos`, `provinsi`) VALUES
+(0, '0987654321', '1234567890', 'Jl. Lebak Jaya Utara IV A Rawasan      ', 'Dukuh Setro', 'Tambaksari', 'Surabaya', '60138', 'Jawa Timur');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rt`
+--
+
+CREATE TABLE IF NOT EXISTS `rt` (
+  `nik_rt` varchar(20) NOT NULL,
+  `foto` varchar(100) NOT NULL,
+  `nik_rw` varchar(20) NOT NULL,
+  `rt` varchar(10) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  PRIMARY KEY (`nik_rt`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rt`
+--
+
+INSERT INTO `rt` (`nik_rt`, `foto`, `nik_rw`, `rt`, `nama`, `alamat`) VALUES
+('0987654321', 'foto/DSC_0872.JPG', '1234567890', '04', 'Mawa', 'Lebak Jaya Utara IV A Rawasan 43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rw`
+--
+
+CREATE TABLE IF NOT EXISTS `rw` (
+  `nik_rw` varchar(20) NOT NULL,
+  `foto` varchar(100) NOT NULL,
+  `rw` varchar(10) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  PRIMARY KEY (`nik_rw`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rw`
+--
+
+INSERT INTO `rw` (`nik_rw`, `foto`, `rw`, `nama`, `alamat`) VALUES
+('1234567890', 'foto/DSC_0872.JPG', '05', 'Alif', 'Lebak Jaya Utara IV A Rawasan ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE IF NOT EXISTS `status` (
+  `id_status` varchar(10) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_status`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id_status`, `status`) VALUES
+('1', 'Belum Kawin'),
+('2', 'Kawin'),
+('3', 'Cerai Hidup'),
+('4', 'Cerai Mati');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `surat`
+--
+
+CREATE TABLE IF NOT EXISTS `surat` (
+  `no_kk` varchar(20) NOT NULL,
+  `id_surat` varchar(100) NOT NULL,
+  `nik` varchar(20) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `pekerjaan` varchar(50) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `tempat` varchar(20) NOT NULL,
+  `tanggal` date NOT NULL,
+  `agama` varchar(10) NOT NULL,
+  `kawin` varchar(20) NOT NULL,
+  `kewar` varchar(20) NOT NULL,
+  `keperluan` text NOT NULL,
+  `tanggal_buat` date NOT NULL,
+  PRIMARY KEY (`id_surat`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `surat`
+--
+
+INSERT INTO `surat` (`no_kk`, `id_surat`, `nik`, `nama`, `alamat`, `pekerjaan`, `gender`, `tempat`, `tanggal`, `agama`, `kawin`, `kewar`, `keperluan`, `tanggal_buat`) VALUES
+('12345678910', 'surat1', '1234567890', 'a', 'a', 'a', 'Laki-laki', 'a', '0000-00-00', 'a', 'a', 'a', 'a', '0000-00-00'),
+('12345678910', 'surat2', '1234567890', 'a', 'a', 'a', 'Laki-laki', 'a', '0000-00-00', 'a', 'a', 'a', 'aa', '0000-00-00'),
+('12345678910', 'surat3', '1234567890', 'Alif', 'Lebak Jaya Utara IV A Rawasan 43', 'Siswa', 'Laki-laki', 'Surabaya', '1999-07-01', 'Islam', 'Tidak Kawi', 'WNI', 'Buat KTP Baru', '0000-00-00'),
+('12345678910', 'surat4', '1234567890', 'Alif Rachmad Kurniawan', 'Lebak Jaya Utara IV A Rawasan 43', 'Siswa', 'Laki-laki', 'Surabaya', '1999-07-01', 'Islam', 'Tidak Kawi', 'WNI', 'Pembuatan KTP baru', '0000-00-00'),
+('12345678910', 'surat5', '1234567890', 'Alif Rachmad Kurniawan', 'Lebak Jaya Utara IV A Rawasan 43', 'Siswa', 'Laki-laki', 'Surabaya', '1999-07-01', 'Islam', 'Tidak Kawin', 'WNI', 'Buat KTP baru', '0000-00-00'),
+('091209312', 'surat6', '10293810', 'Ary', 'JL Rembang 74 B ', 'Siswa', 'Laki-laki', 'Surabaya', '2017-01-03', 'Islam', 'Tidak Kawin', 'WNA', 'Buat KTP Baru', '0000-00-00'),
+('091209312', 'surat7', '127391', 'Ichsan', 'JL Rembang 74 B ', 'Siswa', 'Laki-laki', 'Surabaya', '2017-01-27', 'Islam', 'Tidak Kawin', 'WNI', 'Pindah KK', '2017-01-21'),
+('091209312', 'surat8', '0000001', 'Nabila', 'Lebak Jaya Utara IV A Rawasan 43', 'SIswa', 'Perempuan', 'Surabaya', '2006-10-06', 'Islam', 'Tidak Kawin', 'WNI', '<p>Beasiswa</p>', '2017-01-21'),
+('091209312', 'surat9', '127391', 'Afif', 'Lebak Jaya Utara IV A Rawasan 43', 'Siswa', 'Laki-laki', 'Surabaya', '2000-06-15', 'Islam', 'Tidak Kawin', 'WNI', '<p>KTP Hilang</p>', '2017-01-21'),
+('091209312', 'surat10', '0000001', 'Achmad Chasan', 'JL Rembang 74 B ', 'Transporta', 'L', 'Surabaya', '0000-00-00', 'Islam', 'Kawin', 'WNI', '<p>Pindah KK lama ke KK baru</p>', '2017-02-04'),
+('091209312', 'surat11', '0000001', 'Achmad Chasan', 'JL Rembang 74 B ', 'Transporta', 'L', 'Surabaya', '0000-00-00', 'Islam', 'Kawin', 'WNI', '', '2017-02-04'),
+('091209312', 'surat12', '10293810', 'Wiwik Sagita', 'JL Rembang 74 B ', 'Belum/Tida', 'P', 'Samarinda', '0000-00-00', 'Islam', 'Kawin', 'WNI', '<p>test</p>', '2017-02-04'),
+('091209312', 'surat13', '10293810', 'Wiwik Sagita', 'JL Rembang 74 B ', 'Belum/Tida', 'P', 'Samarinda', '0000-00-00', 'Islam', 'Kawin', 'WNI', '<p>test lagi</p>', '2017-02-04'),
+('091209312', 'surat14', '10293810', 'Wiwik Sagita', 'JL Rembang 74 B ', 'Belum/Tidak Bekerja', 'P', 'Samarinda', '0000-00-00', 'Islam', 'Kawin', 'WNI', '<p>test lagi</p>', '2017-02-04'),
+('091209312', 'surat15', '10293810', 'Wiwik Sagita', 'JL Rembang 74 B ', 'Belum/Tidak Bekerja', 'P', 'Samarinda', '1981-05-04', 'Islam', 'Kawin', 'WNI', '<p>test</p>', '2017-02-04'),
+('091209312', 'surat16', '127391', 'Ary Ichsan P', 'JL Rembang 74 B ', 'Belum/Tidak Bekerja', 'L', 'Surabaya', '1999-11-10', 'Kong Hu Co', 'Belum Kawin', 'WNI', '<p>test lahi</p>', '2017-02-04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `_iuran`
+--
+
+CREATE TABLE IF NOT EXISTS `_iuran` (
+  `no_kk` varchar(20) NOT NULL,
+  `id_iuran` int(11) NOT NULL AUTO_INCREMENT,
+  `bulan` char(2) NOT NULL,
+  `tahun` year(4) NOT NULL,
+  `tanggal` date NOT NULL,
+  `petugas_entry` varchar(50) NOT NULL,
+  `petugas_tagih` varchar(50) NOT NULL,
+  `bayar` double NOT NULL,
+  `status` varchar(2) NOT NULL,
+  PRIMARY KEY (`id_iuran`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `_iuran`
+--
+
+INSERT INTO `_iuran` (`no_kk`, `id_iuran`, `bulan`, `tahun`, `tanggal`, `petugas_entry`, `petugas_tagih`, `bayar`, `status`) VALUES
+('091209312', 1, '01', 2017, '2017-01-27', 'Bpk. Araku', 'Bpk. Mawa', 5000, 'L'),
+('11223344556677', 2, '01', 2017, '2017-01-27', 'Bpk. Araku', 'Bpk. Mawa', 5000, 'L'),
+('2907432908', 3, '01', 2017, '2017-01-27', 'Bpk. Araku', 'Bpk. Mawa', 5000, 'L'),
+('2907432908', 5, '02', 2017, '2017-01-29', 'Bpk. Araku', 'Bpk. Mawa', 5000, 'L'),
+('12345678910', 6, '01', 2017, '2017-01-30', 'Bpk. Araku', 'Bpk. Mawa', 5000, 'L'),
+('091209312', 8, '02', 2017, '2017-02-04', 'Bpk. Araku', 'Bpk. Mawa', 5000, 'L'),
+('10987654321', 9, '01', 2017, '2017-02-17', 'Bpk. Araku', 'Bpk. Mawa', 5000, 'L');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `_lap_iuran`
+--
+
+CREATE TABLE IF NOT EXISTS `_lap_iuran` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tgl` date NOT NULL,
+  `ket` text NOT NULL,
+  `masuk` double NOT NULL,
+  `keluar` double NOT NULL,
+  `saldo` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `_lap_iuran`
+--
+
+INSERT INTO `_lap_iuran` (`id`, `tgl`, `ket`, `masuk`, `keluar`, `saldo`) VALUES
+(2, '2017-01-01', 'Saldo awal', 250000, 0, 250000),
+(3, '2017-02-05', 'Bayar petugas sampah', 0, 150000, 100000),
+(4, '2017-02-07', 'Infaq Mushola Baiturrahman', 50000, 0, 150000),
+(5, '2017-01-08', 'Beli 2 dus AQUA untuk kerja bakti', 0, 35000, 115000),
+(6, '2017-02-10', 'test', 1000, 0, 116000),
+(7, '2017-02-18', 'Beli voucher listrik buat gapura', 0, 12500, 103500);

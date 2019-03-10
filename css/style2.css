@@ -1,0 +1,74 @@
+/*________________TOOLTIP_____________*/
+#tooltip{
+	position:absolute;
+	border:1px solid #333;
+	background:#f7f5d1;
+	padding:10px;
+	color:#333;
+	display:none;
+	border-radius: 8px;
+}
+/*___________END TOOLTIP_____________*/
+
+/* produk */
+#produk {
+	list-style-position:inside;
+	padding: 15px 0 15px 7px;
+	border-radius: 10px;
+	/*background: #DBDBDB;*/
+	list-style: none;
+	width: auto;
+	float: center;
+	margin: auto;
+}
+
+#produk .lis-produk {
+	float: left; 
+	/*padding: 5px; */
+	border: dotted 2px #ddd; 
+	margin: 3px; 
+	border-radius: 10px;
+	width:auto;
+}
+
+
+/*#produk .lis-produk h3{
+	font-weight: bold;
+	font-size: 13px;
+	margin: -4px -4px 0 -4px;
+	text-align: center;
+	padding: 4px;
+	border-radius: 10px;
+	background: #B2C290;
+}*/
+#produk .lis-produk img{
+	width: 130px;
+	height: 150px;
+	border: solid 5px #eee;
+}
+#produk .lis-produk .more{
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	margin: 15px 15px auto;
+}
+#produk .lis-produk .isi{
+	/*height: 130px;*/
+	/*width: 140px;*/
+	background-image:url('folder.png');
+	background-position:center; 
+	background-size:150px 130px;
+	background-repeat:no-repeat;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	margin: 15px;
+}
+
+#produk .lis-produk .isi img{
+	margin: auto;
+	width: 90px;
+	height: 75px;
+	border: none;
+	box-shadow:3px 3px 3px 1px #ADC2B3;	
+}
